@@ -11,6 +11,8 @@ export const Route = createFileRoute("/notes/$topic")({
   },
   head: ({ loaderData }) => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: `${loaderData?.title ?? "Памятка"} — Мой план на смену` },
       { name: "description", content: loaderData?.lead ?? "Памятка для сотрудника" },
       { property: "og:title", content: loaderData?.title ?? "Памятка" },

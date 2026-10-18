@@ -3,7 +3,7 @@ import { useState } from "react";
 import { ArrowUpRight, Sparkles, Clock3, X, Award, Check, MessageCircle, Headphones, Layers, MessagesSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import officeCat from "@/assets/office-cat.png";
-import { AppShell, Card } from "@/components/AppShell";
+import { AppShell } from "@/components/AppShell";
 import { TaskList, Progress } from "@/components/TaskList";
 import { CAT_LINES, TOPICS, WINS, useShift, type TopicKey } from "@/lib/shift";
 
