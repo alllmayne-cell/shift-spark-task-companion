@@ -12,3 +12,4 @@
 - Keep shift state and progress calculations in the existing shared shift module; presentation components consume it without duplicating persistence logic.
 - Use global semantic CSS tokens and existing UI controls across shift-planner screens for consistent presentation and accessible interactions.
 - Import the office-cat illustration as a bundled asset; it must not depend on an external image host.
+- Keep CSAT library content and filtering in a separate browser-safe module; the existing topic route renders the library without changing shift state or public URLs.
