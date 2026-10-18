@@ -8,3 +8,7 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep shift state and progress calculations in the existing shared shift module; presentation components consume it without duplicating persistence logic.
+- Use global semantic CSS tokens and existing UI controls across shift-planner screens for consistent presentation and accessible interactions.
+- Import the office-cat illustration as a bundled asset; it must not depend on an external image host.

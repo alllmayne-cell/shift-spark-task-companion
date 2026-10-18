@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+import { RotateCcw } from "lucide-react";
 import { createFileRoute } from "@tanstack/react-router";
 import { AppShell, Card, PageTitle } from "@/components/AppShell";
 import { useShift } from "@/lib/shift";
@@ -5,6 +7,8 @@ import { useShift } from "@/lib/shift";
 export const Route = createFileRoute("/profile")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Профиль — Мой план на смену" },
       { name: "description", content: "Профиль сотрудника и итоги текущей смены." },
       { property: "og:title", content: "Профиль" },
@@ -27,10 +31,10 @@ function Profile() {
           <div><dt className="text-muted-foreground">Победа дня</dt><dd>{win ?? "Пока не отмечена"}</dd></div>
         </dl>
       </Card>
-      <button onClick={() => { if (confirm("Сбросить прогресс и начать новую смену?")) reset(); }}
-        className="w-full rounded-full bg-primary px-5 py-3 text-sm text-primary-foreground">
-        Сбросить прогресс для новой смены
-      </button>
+      <Button variant="default" onClick={() => { if (confirm("Сбросить прогресс и начать новую смену?")) reset(); }}
+        className="h-auto min-h-12 w-full whitespace-normal rounded-lg px-4 py-3 text-sm">
+        <RotateCcw /> Сбросить прогресс для новой смены
+      </Button>
       <p className="mt-6 text-center text-xs text-muted-foreground">Данные вымышленные и хранятся только в этом браузере.</p>
     </AppShell>
   );

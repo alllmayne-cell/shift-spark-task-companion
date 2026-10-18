@@ -47,8 +47,11 @@
   --color-ring: var(--ring);
   --color-accent-strong: var(--accent-strong);
   --color-on-dark-muted: var(--on-dark-muted);
+  --color-shift: var(--shift);
+  --color-shift-foreground: var(--shift-foreground);
+  --color-shift-progress: var(--shift-progress);
   --font-sans: "Manrope", system-ui, sans-serif;
-  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-display: "Manrope", system-ui, sans-serif;
   --color-ring-offset-background: var(--background);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
@@ -66,23 +69,26 @@
 }
 
 :root {
-  --radius: 1rem;
-  --background: oklch(0.975 0.008 95);
+  --radius: 0.5rem;
+  --background: oklch(0.952 0.008 100);
   --foreground: oklch(0.27 0.008 260);
   --card: oklch(0.99 0.005 95);
   --card-foreground: oklch(0.27 0.008 260);
   --popover: oklch(0.99 0.005 95);
   --popover-foreground: oklch(0.27 0.008 260);
-  --primary: oklch(0.29 0.01 250);
+  --primary: oklch(0.46 0.047 117);
   --primary-foreground: oklch(0.97 0.01 95);
   --secondary: oklch(0.94 0.018 115);
   --secondary-foreground: oklch(0.27 0.008 260);
   --muted: oklch(0.94 0.012 100);
   --muted-foreground: oklch(0.52 0.02 120);
   --accent: oklch(0.82 0.045 15);
-  --accent-strong: oklch(0.62 0.07 15);
+  --accent-strong: oklch(0.53 0.07 15);
   --accent-foreground: oklch(0.27 0.008 260);
   --on-dark-muted: oklch(0.42 0.02 120);
+  --shift: oklch(0.265 0.012 115);
+  --shift-foreground: oklch(0.96 0.012 95);
+  --shift-progress: oklch(0.76 0.062 115);
   --destructive: oklch(0.55 0.15 27);
   --destructive-foreground: oklch(0.98 0 0);
   --border: oklch(0.9 0.015 105);
@@ -93,13 +99,13 @@
   --chart-3: oklch(0.29 0.01 250);
   --chart-4: oklch(0.75 0.04 110);
   --chart-5: oklch(0.82 0.045 15);
-  --sidebar: oklch(0.99 0.005 95);
-  --sidebar-foreground: oklch(0.27 0.008 260);
-  --sidebar-primary: oklch(0.29 0.01 250);
+  --sidebar: oklch(0.235 0.008 115);
+  --sidebar-foreground: oklch(0.94 0.01 95);
+  --sidebar-primary: oklch(0.78 0.045 115);
   --sidebar-primary-foreground: oklch(0.97 0.01 95);
-  --sidebar-accent: oklch(0.94 0.018 115);
+  --sidebar-accent: oklch(0.31 0.015 115);
   --sidebar-accent-foreground: oklch(0.27 0.008 260);
-  --sidebar-border: oklch(0.9 0.015 105);
+  --sidebar-border: oklch(0.33 0.012 115);
   --sidebar-ring: oklch(0.55 0.05 120);
 }
 
@@ -114,5 +120,6 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
-  .font-display { font-weight: 500; letter-spacing: -0.01em; }
+  .font-display { font-weight: 600; letter-spacing: 0; }
+  button, a, input { -webkit-tap-highlight-color: transparent; }
 }
