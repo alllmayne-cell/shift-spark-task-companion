@@ -305,6 +305,4 @@ export function filterMemos(category: Category, query: string): Memo[] {
   });
 }
 
-export function canRequestRating(currentScenarioPermits: boolean) {
-  return currentScenarioPermits;
-}
+export const RATING_POLICY = { scale: 5, requiresCurrentScenarioPermission: true } as const;
