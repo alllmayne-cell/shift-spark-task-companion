@@ -36,7 +36,7 @@ function Index() {
           <h1 className="font-display text-4xl text-foreground md:text-5xl" suppressHydrationWarning>{greeting()}, Анна</h1>
         </div>
         <button aria-label="Кот-выживальщик" title="Кто это тут?"
-          onClick={() => setCat(CAT_LINES[Math.floor(Math.random() * CAT_LINES.length)])}
+          onClick={() => setCat(CAT_LINES[Math.floor(Math.random() * CAT_LINES.length)] ?? null)}
           className="rounded-full border border-border bg-card px-3 py-2 text-xl transition-transform hover:-rotate-12">
           🐈‍⬛
         </button>
