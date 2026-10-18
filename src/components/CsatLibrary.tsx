@@ -88,7 +88,7 @@ export function CsatLibrary() {
           );
         })}
       </Tabs>
-      <p role="status" aria-live="polite" className="sticky bottom-20 z-10 mt-5 min-h-6 bg-background/95 text-sm leading-relaxed text-primary md:bottom-3">{notice}</p>
+      <p role="status" aria-live="polite" className={notice ? "mt-5 text-sm leading-relaxed text-primary" : "sr-only"}>{notice}</p>
     </>
   );
 }
