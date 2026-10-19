@@ -8,7 +8,7 @@
 - [x] Add cross-sales and compact refusal guidance; preserve CSAT and expand existing ACSAT tips into both zones.
 - [x] Add unified library search, combined filters, phrase copying, favorites and recent history.
 - [x] Verify full content, persistence, mobile layout and existing shift flows.
-- [ ] Expand ACSAT with every requested emotional, wording, privacy, refusal, technical, sensitive-topic, sales and green-zone trigger.
-- [ ] Add steps, mini-checklists, searchable safe alternatives and preserve all existing memos.
-- [ ] Verify ACSAT content, copying, filtering, navigation and shift regressions.
-- [ ] Apply the latest document: add only missing ACSAT situations, preserve existing cards and leave CSAT, home, navigation and styling unchanged.
+- [x] Expand ACSAT with every requested emotional, wording, privacy, refusal, technical, sensitive-topic, sales and green-zone trigger.
+- [x] Add steps, mini-checklists, searchable safe alternatives and preserve all existing memos.
+- [x] Verify ACSAT content, copying, filtering, navigation and shift regressions.
+- [x] Apply the latest document: add only missing ACSAT situations, preserve existing cards and leave CSAT, home, navigation and styling unchanged.
