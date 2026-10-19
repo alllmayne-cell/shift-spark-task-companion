@@ -1,14 +1,64 @@
-# Welcome to your Lovable project
+# Shift Spark Task Companion
+
+Создай адаптивное веб-приложение «Мой план на смену» для сотрудников контакт-центра. Это должен быть работающий интерактивный прототип, а не лендинг и не презентация.
+
+Дизайн-концепция: Olive after hours
+
+Основные цвета: графитовый, молочный, оливковый.
+
+Акцентный цвет: пыльная роза.
+
+Стиль: professional chic, минимализм, современный интерфейс, аккуратные скругления, хорошая типографика, много свободного пространства.
+
+Не использовать яркие цвета, детские иллюстрации и избыточные градиенты.
+
+Добавить небольшую забавную пасхалку с котом-офисным выживальщиком.
+
+Интерфейс и все надписи — на русском языке.
+
+Главный экран:
+
+Приветствие и текущая дата.
+
+Карточка «Моя смена» с прогрессом выполнения задач.
+
+Блок «План на сегодня» со списком задач и работающими чекбоксами.
+
+Карточки быстрого доступа: «CSAT», «ACSAT», «Продукты», «Возражения».
+
+Блок «Моя маленькая победа» с возможностью отметить личное достижение за смену.
+
+Нижняя навигация: «Главная», «Мои задачи», «Памятки», «Профиль».
+
+Функциональность:
+
+Чекбоксы должны менять состояние задач.
+
+Прогресс смены должен автоматически пересчитываться.
+
+Карточки и пункты навигации должны открывать соответствующие экраны или разделы.
+
+Добавь несколько демонстрационных задач и полезных подсказок для сотрудника исходящего телемаркетинга.
+
+Сохраняй выполненные задачи в браузере, чтобы после перезагрузки страницы они не сбрасывались.
+
+Предусмотри возможность сбросить прогресс для новой смены.
+
+Используй вымышленные данные. Не подключай внешние корпоративные системы, реальные клиентские данные, авторизацию Сбера или внутренние API.
+
+Сначала создай качественный главный экран и базовую рабочую функциональность. Не добавляй функции, которые не описаны выше. Сделай приложение адаптивным для компьютера и мобильного телефона.
 
 This project was built with [Lovable](https://lovable.dev).
 
+**Live app**: https://shift-spark-task-companion.lovable.app
+
 ## Build with Lovable
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/a46644ed-bd62-4a8a-a01c-ac6b09a6df8e).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
@@ -20,10 +70,3 @@ cd <repository-name>
 npm i
 npm run dev
 ```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
