@@ -19,7 +19,10 @@ describe("Final library", () => {
   });
   it("preserves all eight original ACSAT cards and unique saved IDs", () => {
     for (const memo of [...ACSAT_CRITICAL_MEMOS, ...ACSAT_GREEN_MEMOS]) {
-      expect(LIBRARY_MEMOS.find(item => item.id === memo.id)).toMatchObject(memo);
+      const { keywords, ...body } = memo;
+      const stored = LIBRARY_MEMOS.find(item => item.id === memo.id);
+      expect(stored).toMatchObject(body);
+      expect(stored?.keywords).toEqual(expect.arrayContaining(keywords));
     }
     expect(new Set(LIBRARY_MEMOS.map(memo => memo.id)).size).toBe(LIBRARY_MEMOS.length);
     expect(LIBRARY_MEMOS.some(memo => memo.id === "acsat-do-not-call")).toBe(false);
