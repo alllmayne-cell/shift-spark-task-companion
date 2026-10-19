@@ -4,6 +4,7 @@ import { ACSAT_CRITICAL_MEMOS, ACSAT_GREEN_MEMOS, CROSS_SALES_MEMOS, OBJECTION_M
 import { CSAT_CATEGORIES } from "@/lib/csat";
 import { TOPICS } from "@/lib/shift";
 import { LIBRARY_STORAGE_KEY, useLibraryState } from "@/lib/library-state";
+import { ACSAT_POLICY } from "@/lib/acsat";
 beforeEach(() => localStorage.clear());
 afterEach(cleanup);
 describe("Final library", () => {
@@ -15,6 +16,33 @@ describe("Final library", () => {
   });
   it("retains all four existing ACSAT principles", () => {
     for (const tip of TOPICS.acsat.tips) expect([...ACSAT_CRITICAL_MEMOS, ...ACSAT_GREEN_MEMOS].some(memo => memo.principle.includes(tip))).toBe(true);
+  });
+  it("preserves all eight original ACSAT cards and unique saved IDs", () => {
+    for (const memo of [...ACSAT_CRITICAL_MEMOS, ...ACSAT_GREEN_MEMOS]) {
+      expect(LIBRARY_MEMOS.find(item => item.id === memo.id)).toMatchObject(memo);
+    }
+    expect(new Set(LIBRARY_MEMOS.map(memo => memo.id)).size).toBe(LIBRARY_MEMOS.length);
+    expect(LIBRARY_MEMOS.some(memo => memo.id === "acsat-do-not-call")).toBe(false);
+  });
+  it("finds the added practical situations with the ACSAT zone filter", () => {
+    const expected = ["acsat-account-question", "acsat-credit-question", "acsat-prime-question", "acsat-app-help", "acsat-thanks-services"];
+    const results = searchLibrary("", ["acsat-green"], undefined, "acsat-green");
+    for (const id of expected) expect(results.some(memo => memo.id === id)).toBe(true);
+    expect(searchLibrary("Пароль", ["acsat-green"], ["acsat-app-help"], "acsat-green").map(memo => memo.id)).toEqual(["acsat-app-help"]);
+    expect(searchLibrary("", ["acsat-critical"], expected)).toEqual([]);
+  });
+  it("keeps negative words contextual, not automatically banned", () => {
+    expect(ACSAT_POLICY.automaticNegationBan).toBe(false);
+  });
+  it("does not escalate automatically based on sensitive words", () => {
+    expect(ACSAT_POLICY.automaticSensitiveWordEscalation).toBe(false);
+  });
+  it("requires a confirmed event for congratulations", () => {
+    expect(ACSAT_POLICY.congratulationsRequireConfirmedEvent).toBe(true);
+  });
+  it("stops sales after refusal and follows the applicable SMS procedure", () => {
+    expect(ACSAT_POLICY.refusalStopsSales).toBe(true);
+    expect(ACSAT_POLICY.smsRequiresApplicableProcedure).toBe(true);
   });
   it("provides eight detailed cross-sales scenarios", () => {
     expect(CROSS_SALES_MEMOS).toHaveLength(8);
