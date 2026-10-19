@@ -11,3 +11,4 @@
 - [ ] Expand ACSAT with every requested emotional, wording, privacy, refusal, technical, sensitive-topic, sales and green-zone trigger.
 - [ ] Add steps, mini-checklists, searchable safe alternatives and preserve all existing memos.
 - [ ] Verify ACSAT content, copying, filtering, navigation and shift regressions.
+- [ ] Apply the latest document: add only missing ACSAT situations, preserve existing cards and leave CSAT, home, navigation and styling unchanged.
