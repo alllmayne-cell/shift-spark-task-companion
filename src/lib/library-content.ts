@@ -1,8 +1,9 @@
 import { CSAT_CATEGORIES, type Memo } from "./csat";
 import { TOPICS } from "./shift";
+import { ACSAT_DETAILED_MEMOS, ACSAT_GREEN_ADDITIONS, type AcsatDetails } from "./acsat";
 
 export type LibrarySection = "csat" | "acsat-critical" | "acsat-green" | "cross-sales" | "objections";
-export type LibraryMemo = Memo & { section: LibrarySection; category: string; keywords: string[] };
+export type LibraryMemo = Memo & Partial<AcsatDetails> & { section: LibrarySection; category: string; keywords: string[] };
 export const LIBRARY_SECTIONS = [
   { id: "csat", title: "CSAT", lead: "Клиентский опыт и тёплый профессиональный разговор" },
   { id: "acsat-critical", title: "ACSAT: критическая зона", lead: "Точность, границы полномочий и осознанное решение" },
@@ -53,9 +54,22 @@ export const OBJECTION_MEMOS: LibraryMemo[] = refusals.map(([id, title, phrases,
   id: `objection-${id}`, title, when: `Клиент говорит: «${title}».`, principle: id === "think" ? "Дай время на решение. Только при готовности клиента поясни оставшийся вопрос; не требуй решения и не назначай повторный звонок без согласования по правилам." : id === "no-calls" ? "Прекрати продажу. Обрабатывай просьбу по действующему порядку в рамках полномочий; не обещай удаление из всех баз. Не удерживай клиента новой презентацией." : "Прими позицию клиента. При явном отказе останови презентацию; не спорь и не добавляй новый продукт. Короткой спокойной реакции достаточно.", phrases,
   dialogue: [{ speaker: "Клиент", text: client }, { speaker: "Сотрудница", text: id === "think" ? "Понимаю. Спасибо за разговор. Хорошего дня." : phrases.join(" ") }], avoid: [avoid], instead: phrases[0] ?? "Спасибо за разговор.", takeaway: "Услышать, принять, спокойно завершить.", section: "objections", category: "objections", keywords: [title, "отказ", "завершение"],
 }));
+// Existing card IDs and bodies remain stable; overlapping drafts contribute practical detail, not duplicate cards.
+const overlapIds: Record<string, string> = {
+  "acsat-do-not-call": "critical-refusal",
+  "acsat-product-terms": "critical-terms",
+  "acsat-positive-end": "green-summary",
+};
+const existingAcsat = [...ACSAT_CRITICAL_MEMOS, ...ACSAT_GREEN_MEMOS].map(memo => {
+  const detail = ACSAT_DETAILED_MEMOS.find(item => overlapIds[item.id] === memo.id);
+  return detail ? { ...memo, steps: detail.steps, checklist: detail.checklist, keywords: [...memo.keywords, ...detail.keywords] } : memo;
+});
 export const LIBRARY_MEMOS: LibraryMemo[] = [
   ...CSAT_CATEGORIES.flatMap(category => category.memos.map(memo => ({ ...memo, section: "csat" as const, category: category.id, keywords: [category.title, category.lead] }))),
-  ...ACSAT_CRITICAL_MEMOS, ...ACSAT_GREEN_MEMOS, ...CROSS_SALES_MEMOS, ...OBJECTION_MEMOS,
+  ...existingAcsat,
+  ...ACSAT_DETAILED_MEMOS.filter(memo => !overlapIds[memo.id]),
+  ...ACSAT_GREEN_ADDITIONS,
+  ...CROSS_SALES_MEMOS, ...OBJECTION_MEMOS,
 ];
 const normalize = (text: string) => text.toLocaleLowerCase("ru-RU").replaceAll("ё", "е").trim();
 export function searchLibrary(query: string, sections: string[] = [], favorites?: string[], category = "all"): LibraryMemo[] {
@@ -63,8 +77,8 @@ export function searchLibrary(query: string, sections: string[] = [], favorites?
   return LIBRARY_MEMOS.filter(memo => {
     if (sections.length && !sections.includes(memo.section)) return false;
     if (favorites && !favorites.includes(memo.id)) return false;
-    if (category !== "all" && category !== memo.category) return false;
-    const text = normalize([memo.title, memo.when, memo.principle, ...memo.keywords, ...memo.phrases, ...memo.dialogue.map(line => line.text), ...memo.avoid, memo.instead, memo.takeaway].join(" "));
+    if (category !== "all" && category !== memo.category && category !== memo.section) return false;
+    const text = normalize([memo.title, memo.when, memo.principle, ...memo.keywords, ...memo.phrases, ...memo.dialogue.map(line => line.text), ...memo.avoid, memo.instead, memo.takeaway, ...(memo.steps ?? []), ...(memo.checklist ?? [])].join(" "));
     return words.every(word => text.includes(word));
   });
 }

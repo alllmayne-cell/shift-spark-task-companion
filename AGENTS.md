@@ -16,3 +16,4 @@
 - Keep unified library content and combined search in browser-safe library modules, reusing original CSAT memos; this preserves existing content and topic URLs.
 - Use a separate browser storage key and shared hook for library favorites and recents; library actions must never mutate shift persistence.
 - Reuse the same memo body and favorite controls for CSAT and the unified library; this keeps copying and saved-state behavior consistent across views.
+- Compose ACSAT additions from the browser-safe ACSAT module and merge overlapping draft details into stable existing card IDs; this avoids duplicate scenarios and preserves saved favorites while keeping optional ACSAT steps out of CSAT bodies.
